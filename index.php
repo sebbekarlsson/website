@@ -1,3 +1,4 @@
+<?php include("modules/base/API.php"); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,9 +14,11 @@
 		<?php include("modules/base/popups/login.php"); ?>
 		<?php include("modules/base/navbar.php"); ?>
 		<div class="content">
+			<?php registerUser("apa","apa","apa","apa"); ?>
 		</div>
 	</body>
 
 	<footer>
+		<?php include("modules/base/footer.php"); ?>
 	</footer>
 </html>
