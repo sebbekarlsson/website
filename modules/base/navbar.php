@@ -7,8 +7,21 @@
 	</div>
 	<div class="navright">
 		<ul>
-			<li><a class="pop navbtn" popid="pop_login" href="#">Login</a></li>
-			<li><a class="pop navbtn" popid="pop_register" href="#">Register</a></li>
+			<?php
+				if(!isLoggedin()){
+					?>
+					<li><a class="pop navbtn" popid="pop_login" href="#">Login</a></li>
+					<li><a class="pop navbtn" popid="pop_register" href="#">Register</a></li>
+					<?php
+				}else{
+					?>
+					<li><?php echo $USER->userFirstname; ?></li>
+					<li><a class="pop navbtn" popid="pop_upload" href="#">Upload</a></li>
+					<li><a class="navbtn" href="#">Messages</a></li>
+					<li><a class="navbtn" href="logout.php">Logout</a></li>
+					<?php
+				}
+			?>
 			<li><input class="intext innershadow rounded" name="q" placeholder="Search"></li>
 		</ul>
 	</div>

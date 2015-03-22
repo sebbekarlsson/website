@@ -42,6 +42,7 @@
 
 .content{
 	width:80%;
+	margin:auto;
 }
 
 .intext{
@@ -105,6 +106,7 @@
 	position: fixed;
 	background-color:rgba(0,0,0,0.7);
 	display:none;
+	z-index: 100;
 }
 
 .backdrop:hover{
@@ -117,7 +119,7 @@
 	margin-left:auto;
 	margin-right: auto;
 	margin-top:150px;
-	z-index: 1;
+	z-index: 100;
 }
 
 .popup:hover{
@@ -126,4 +128,56 @@
 
 .text{
 	padding:12px;
+}
+
+.imageflow{
+	width:90%;
+	background-color:#3498db;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:24px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	border-radius: 12px;
+}
+
+.flowimg{
+	width:148px;
+	height:148px;
+	background-size:cover;
+	background-position: center;
+	order: 5;
+	margin:12px;
+	position: relative;
+	display:table;
+	transition:.3s;
+}
+
+.flowimg:hover .imgdrop{
+	background-color:rgba(0,0,0,0.7);
+	transition:.3s;
+}
+
+.flowimg:hover .imgdrop span{
+	display:block;
+}
+
+.flowimg:hover{
+	outline-color: white;
+	outline-style: solid;
+	transition:.3s;
+}
+
+.imgdrop{
+	color:white;
+	background-color:rgba(0,0,0,0);
+	display:table-cell;
+	vertical-align: middle;
+	text-align: center;
+	transition:.3s;
+}
+
+.imgdrop span{
+	display:none;
 }

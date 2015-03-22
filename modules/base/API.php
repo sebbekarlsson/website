@@ -3,6 +3,29 @@
 
 	session_start();
 
+	if(isLoggedin()){
+		$USER = new User($_SESSION['userID']);
+	}
+
+	class User{
+		var $userID;
+		var $userEmail;
+		var $userFirstname;
+		var $userLastname;
+
+		function __construct($userID){
+			$this->userID = $userID;
+			global $db;
+
+			$result = $db->query("SELECT * FROM users WHERE userID=$userID");
+			while(($row = $result->fetch()) != false){
+				$this->userEmail = $row['userEmail'];
+				$this->userFirstname = $row['userFirstname'];
+				$this->userLastname = $row['userLastname'];
+			}
+		}
+	}
+
 	function isLoggedin(){
 		if(isset($_SESSION['userID']) || strlen($_SESSION['userID'] > 0)){
 			return 1;
@@ -45,6 +68,82 @@
 
 		$db->query("INSERT INTO users (userEmail, userPassword, userFirstname, userLastname) VALUES('$email', '$password', '$firstname', '$lastname')");
 		return "ok";
+	}
+
+	function checkPassword($email, $password){
+		global $db;
+
+		$result = $db->query("SELECT * FROM users");
+		while(($row = $result->fetch()) != false){
+			$realpassword = $row['userPassword'];
+		}
+
+		return ($password == $realpassword);
+	}
+
+	function getEmailUserID($email){
+		global $db;
+
+		$result = $db->query("SELECT userID FROM users WHERE userEmail='$email'");
+		while(($row = $result->fetch()) != false){
+			return $row['userID'];
+		}
+	}
+
+	function randomString($length) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $charactersLength = strlen($characters);
+	    $randomString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, $charactersLength - 1)];
+	    }
+	    return $randomString;
+	}
+
+	function uploadImage($file, $dir, $output){
+		$target_dir = $dir;
+		if(!file_exists($target_dir)){mkdir($target_dir);}
+		$target_file = $target_dir . $output;
+		$uploadOk = 1;
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		// Check if image file is a actual image or fake image
+		if(isset($_POST["submit"])) {
+		    $check = getimagesize($file["tmp_name"]);
+		    if($check !== false) {
+		        return "File is an image - " . $check["mime"] . ".";
+		        $uploadOk = 1;
+		    } else {
+		        return "File is not an image.";
+		        $uploadOk = 0;
+		    }
+		}
+		// Check if file already exists
+		if (file_exists($target_file)) {
+		    return "Sorry, file already exists.";
+		    $uploadOk = 0;
+		}
+		// Check file size
+		if ($file["size"] > 900000000000) {
+		    return "Sorry, your file is too large.";
+		    $uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+		    return "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		    $uploadOk = 0;
+		}
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
+		    return "Sorry, your file was not uploaded.";
+		// if everything is ok, try to upload file
+		} else {
+		    if (move_uploaded_file($file["tmp_name"], $target_file)) {
+		        return 1;
+		    } else {
+		        return 0;
+		    }
+		}
 	}
 
 

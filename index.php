@@ -12,9 +12,10 @@
 	<body>
 		<?php include("modules/base/popups/register.php"); ?>
 		<?php include("modules/base/popups/login.php"); ?>
+		<?php include("modules/base/popups/upload.php"); ?>
 		<?php include("modules/base/navbar.php"); ?>
 		<div class="content">
-			<?php registerUser("apa","apa","apa","apa"); ?>
+			<?php include("modules/base/imageflow.php"); ?>
 		</div>
 	</body>
 
