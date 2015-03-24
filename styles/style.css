@@ -130,16 +130,23 @@
 	padding:12px;
 }
 
-.imageflow{
+.flowarea{
 	width:90%;
 	background-color:#3498db;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:24px;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
 	border-radius: 12px;
+	text-align: center;
+}
+
+.imageflow{
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
 }
 
 .flowimg{
@@ -148,10 +155,11 @@
 	background-size:cover;
 	background-position: center;
 	order: 5;
+	-webkit-order: 5;
 	margin:12px;
 	position: relative;
 	display:table;
-	transition:.3s;
+
 }
 
 .flowimg:hover .imgdrop{

@@ -26,6 +26,37 @@
 		}
 	}
 
+	class Image{
+		var $imageID;
+		var $userID;
+		var $imageFile;
+		var $imageTitle;
+		var $imageDesc;
+		var $imageDate;
+
+		function __construct($imageID){
+			$this->imageID = $imageID;
+			global $db;
+
+			$result = $db->query("SELECT * FROM images WHERE imageID=$imageID");
+			while(($row = $result->fetch()) != false){
+				$this->userID = $row['userID'];
+				$this->imageFile = $row['imageFile'];
+				$this->imageTitle = $row['imageTitle'];
+				$this->imageDesc = $row['imageDesc'];
+				$this->imageDate = $row['imageDate'];
+			}
+		}
+	}
+
+	function checkImage($image){
+		return (strlen($image->imageFile) >= 3);
+	}
+
+	function getCurrentDate(){
+		return Date("Y/m/d/h:i:s");
+	}
+
 	function isLoggedin(){
 		if(isset($_SESSION['userID']) || strlen($_SESSION['userID'] > 0)){
 			return 1;

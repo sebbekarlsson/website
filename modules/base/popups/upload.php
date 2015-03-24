@@ -12,11 +12,9 @@
 				<input type="text" class="intext input innershadow" name="upload_title" placeholder="Title"><br>
 				<textarea name="upload_desc" rows="8" cols="64" class="innershadow input" placeholder="Description" style="font-size:100%;"></textarea><br>
 				Select image to upload:
-			    <input type="file" name="fileToUpload" id="file">
-			    <input type="submit" value="Upload Image" name="submit_uploadimage"><br>
+			    <input type="file" name="fileToUpload" id="file"><br><br>
+			    <input type="submit" class="btn blue input" value="Upload Image" name="submit_uploadimage"><br>
 		    </form>
-		</div>
-		<div class="text" id="upload_response">
 		</div>
 	</div>
 </div>
@@ -32,7 +30,8 @@
 		$response = uploadImage($file, "uploads/", $output);
 
 		if($response == 1){
-			$db->query("INSERT INTO images (imageFile, imageTitle, imageDesc, userID) VALUES('$output', '$title', '$desc', $USER->userID);");
+			$date = getCurrentDate();
+			$db->query("INSERT INTO images (imageFile, imageTitle, imageDesc, userID, imageDate) VALUES('$output', '$title', '$desc', $USER->userID, '$date');");
 			echo "<script>alert('Upload complete!');</script>";
 		}else{
 			echo "<script>alert('Something went wrong!'); window.location.href='.';</script>";

@@ -1,8 +1,11 @@
-<div class="imageflow innershadow">
 <?php
 
+	include("../modules/base/API.php");
+
+	$limit = $_POST['limit'];
+
 	$images = [];
-	$result = $db->query("SELECT * FROM images");
+	$result = $db->query("SELECT * FROM images ORDER BY imageDate DESC LIMIT $limit");
 	while(($row = $result->fetch()) != false){
 		array_push($images, $row);
 	}
@@ -13,9 +16,10 @@
 		$title = $images[$i]['imageTitle'];
 		$desc = $images[$i]['imageDesc'];
 		$userID = $images[$i]['userID'];
+		$imageID = $images[$i]['imageID'];
 
 		?>
-		<a href="#">
+		<a href="image.php?imageID=<?php echo $imageID; ?>">
 			<div class="flowimg shadow" style="background-image:url('uploads/<?php echo $imageFile; ?>');">
 				<div class="imgdrop">
 					<span>
@@ -26,6 +30,5 @@
 		</a>
 		<?php
 	}	
+
 ?>
-<div style="clear:both;"></div>
-</div>
