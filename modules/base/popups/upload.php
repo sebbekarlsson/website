@@ -30,8 +30,7 @@
 		$response = uploadImage($file, "uploads/", $output);
 
 		if($response == 1){
-			$date = getCurrentDate();
-			$db->query("INSERT INTO images (imageFile, imageTitle, imageDesc, userID, imageDate) VALUES('$output', '$title', '$desc', $USER->userID, '$date');");
+			$db->query("INSERT INTO images (imageFile, imageTitle, imageDesc, userID) VALUES('$output', '$title', '$desc', $USER->userID);");
 			echo "<script>alert('Upload complete!');</script>";
 		}else{
 			echo "<script>alert('Something went wrong!'); window.location.href='.';</script>";

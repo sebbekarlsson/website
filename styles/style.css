@@ -45,6 +45,16 @@
 	margin:auto;
 }
 
+.leftcontent{
+	width:60%;
+	float:left;
+}
+
+.rightcontent{
+	width:39%;
+	float:right;
+}
+
 .intext{
 	width:200px;
 	height:32px;
@@ -82,6 +92,14 @@
 
 .blue{
 	background-color: #3498db;
+}
+
+.green{
+	background-color: #2ecc71;
+}
+
+.red{
+	background-color:#e74c3c;
 }
 
 .innershadow{
@@ -127,7 +145,10 @@
 }
 
 .text{
-	padding:12px;
+	width:80%;
+	margin:auto;
+	padding-top:12px;
+	padding-bottom: 12px;
 }
 
 .flowarea{
@@ -188,4 +209,58 @@
 
 .imgdrop span{
 	display:none;
+}
+
+.imgroup{
+	width:100%;
+	background-color:#3498db;
+	height:100px; 
+	margin:auto;
+	border-radius: 12px;
+	overflow: hidden;
+	line-height: 100px;
+	vertical-align: center;
+	padding-top:12px;
+	padding-bottom:12px;
+}
+
+.groupimg{
+	width:96px;
+	height:96px;
+	display:inline-block;
+	margin-left:12px;
+	background-color:black;
+	background-size: cover;
+	background-position: center;
+}
+
+#selected{
+	outline-color: white;
+	outline-style: solid;
+	outline-width: 4px;
+}
+
+.groupimg:hover{
+	outline-color: white;
+	outline-style: solid;
+	outline-width: 4px;
+}
+
+.imgpanel{
+	width:100%;
+	background-color:#3498db;
+	height:64px; 
+	margin:auto;
+	border-radius: 12px;
+	line-height: 64px;
+	vertical-align: center;
+	padding:12px;
+}
+
+.rounded{
+	border-radius: 12px;
+}
+
+.pushed{
+	margin-top:12px;
 }

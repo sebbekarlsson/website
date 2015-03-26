@@ -2,6 +2,7 @@
 	<div class="navleft">
 		<ul>
 			<li><a class="navbtn" href="index.php">Flow</a></li>
+			<li><a class="navbtn" href="random.php">Random</a></li>
 			<li><a class="navbtn" href="index.php">People</a></li>
 		</ul>
 	</div>

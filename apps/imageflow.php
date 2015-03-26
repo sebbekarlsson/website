@@ -17,10 +17,14 @@
 		$desc = $images[$i]['imageDesc'];
 		$userID = $images[$i]['userID'];
 		$imageID = $images[$i]['imageID'];
+	
+		$thumbnail = "apps/resizor.php?url=../uploads/$imageFile&width=128&height=128";
+
+		
 
 		?>
 		<a href="image.php?imageID=<?php echo $imageID; ?>">
-			<div class="flowimg shadow" style="background-image:url('uploads/<?php echo $imageFile; ?>');">
+			<div class="flowimg shadow" style="background-image:url('<?php echo $thumbnail; ?>');">
 				<div class="imgdrop">
 					<span>
 						<?php echo $title; ?>

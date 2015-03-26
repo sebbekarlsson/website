@@ -49,6 +49,16 @@
 		}
 	}
 
+	function getVotes($imageID, $mode){
+		global $db;
+		$votes = 0;
+		$result = $db->query("SELECT * FROM imageVotes WHERE imageID=$imageID AND voteMode=$mode");
+		while(($row = $result->fetch()) != false){
+			$votes += 1;
+		}
+		return $votes;
+	}
+
 	function checkImage($image){
 		return (strlen($image->imageFile) >= 3);
 	}
@@ -175,6 +185,16 @@
 		        return 0;
 		    }
 		}
+	}
+
+	function hasVoted($userID, $imageID){
+		global $db;
+		$count = 0;
+		$result = $db->query("SELECT * FROM imagevotes WHERE userID=$userID AND imageID=$imageID");
+		while(($row = $result->fetchAll()) != false){
+			$count++;
+		}
+		return ($count > 0);
 	}
 
 
