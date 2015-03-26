@@ -1,5 +1,5 @@
 <?php
-	$db = new PDO('mysql:host=localhost;dbname=imageforum', "root", "root", null);
+	$db = new PDO('mysql:host=home.dev;dbname=imageforum', "root", "tango255", null);
 
 	session_start();
 
@@ -57,6 +57,18 @@
 			$votes += 1;
 		}
 		return $votes;
+	}
+
+	function getComments($imageID){
+		global $db;
+		$comments = [];
+
+		$result = $db->query("SELECT * FROM imageComments WHERE imageID=$imageID ORDER BY commentDate DESC");
+		while(($row = $result->fetch()) != false){
+			array_push($comments, $row);
+		}
+
+		return $comments;
 	}
 
 	function checkImage($image){

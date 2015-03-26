@@ -1,7 +1,6 @@
 <div class="flowarea innershadow">
 	<button class="btn blue flowrefresh shadow">Refresh</button>
 	<div class="imageflow">
-
 	</div>
 </div>
 <script type="text/javascript">

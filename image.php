@@ -63,17 +63,19 @@
 						request.done(function(data){
 							var object = JSON.parse(data);
 
+							var comments = object.comments;
 							var downvotes = object.downvotes;
 							var upvotes = object.upvotes;
 							var score = upvotes - downvotes;
 							var totalvotes = downvotes + upvotes;
 
 							$("#image_data").html("<li>Votes: "+totalvotes+"</li><li>Score: "+score+"</li>");
+							$("#comments_data").html(comments);
 						});
 					}
 
 				</script>
-				<div class="text innershadow">
+				<div class="text">
 					<div class="leftcontent">
 						<div class="text">
 							<img width="80%" src="uploads/<?php echo $IMAGE->imageFile; ?>">
@@ -121,8 +123,45 @@
 						});
 					});
 				</script>
+				<div class="text" style="text-align:center;">
+					<form method="post" id="form_comment">
+						<input type="hidden" name="image_id" value="<?php echo $imageID; ?>">
+						<textarea rows="8" cols="100" id="input_comment" name="input_comment"></textarea><br>
+						<input type="submit" class="btn blue" name="post_comment" value="Post">
+					</form>
+					<script type="text/javascript">
+						$("#form_comment").submit(function(event){
+							event.preventDefault();
+
+							var children = event.currentTarget.children;
+							var data = {};
+
+							for(var i = 0; i < children.length; i++){
+								data[children[i].name] = children[i].value;
+							}
+
+							var request = $.ajax({
+								type:"post",
+								cache:false,
+								url:"apps/comment.php",
+								data:{formObject:data}
+							});
+
+							request.done(function(data){
+								children.input_comment.value = "";
+							});
+
+							
+						});
+					</script>
+				</div>
 			</div>
 			<div style="clear:both;"></div>
+		</div>
+		<div class="commentsbg" style="background-image:url(uploads/<?php echo $IMAGE->imageFile; ?>);">
+			<div class="text">
+				<span id="comments_data"></span>
+			</div>
 		</div>
 	</body>
 

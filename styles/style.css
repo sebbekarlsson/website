@@ -264,3 +264,19 @@
 .pushed{
 	margin-top:12px;
 }
+
+.comment{
+	width:100%;
+	text-align: left;
+	background-color:white;
+}
+
+.commentsbg{
+	width:100%;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+#input_comment{
+	width:100%;
+}
